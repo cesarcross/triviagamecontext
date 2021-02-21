@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
+import { TriviaContext } from '../contexts/TriviaContext.jsx';
 
-const Results = ({ score, setScore, navigation }) => {
+const Results = ({
+  score,
+  setScore,
+  setQuestions,
+  setQuestionIndex,
+  navigation,
+}) => {
+  const results = useContext(TriviaContext);
+
   const handlePlayAgain = () => {
     setScore(0);
+    setQuestions([]);
+    setQuestionIndex(0);
     navigation.navigate('Home');
   };
 

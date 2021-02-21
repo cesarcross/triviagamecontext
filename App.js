@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Questions from './components/Questions';
 import Results from './components/Results';
 import Answers from './components/Answers';
+import { TriviaContext } from './contexts/TriviaContext.jsx';
 
 const Stack = createStackNavigator();
 
@@ -17,9 +18,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <SafeAreaView> */}
       <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} styles={styles.container} />
+        <Stack.Screen name='Home' component={Home} />
+
         <Stack.Screen name='Questions'>
           {(props) => (
             <Questions
@@ -33,9 +34,19 @@ export default function App() {
             />
           )}
         </Stack.Screen>
+
         <Stack.Screen name='Results'>
-          {(props) => <Results {...props} score={score} setScore={setScore} />}
+          {(props) => (
+            <Results
+              {...props}
+              score={score}
+              setScore={setScore}
+              setQuestions={setQuestions}
+              setQuestionIndex={setQuestionIndex}
+            />
+          )}
         </Stack.Screen>
+
         <Stack.Screen name='Answers'>
           {(props) => (
             <Answers
@@ -47,16 +58,6 @@ export default function App() {
           )}
         </Stack.Screen>
       </Stack.Navigator>
-      {/* </SafeAreaView> */}
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0a500',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
