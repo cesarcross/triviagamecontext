@@ -1,7 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { color } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native';
 import {
   Container,
   Title,

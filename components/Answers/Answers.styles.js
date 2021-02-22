@@ -9,25 +9,24 @@ export const Container = styled.View`
 export const Title = styled.Text`
   font-size: 54px;
   color: #fff;
-  /* margin-top: 150px; */
+  font-family: 'Lora_400Regular';
 `;
 
 export const Score = styled.Text`
   font-size: 54px;
   color: #fff;
-  /* margin-top: 150px; */
+  font-family: 'Lora_400Regular';
 `;
 
 export const AnswersItem = styled.Text`
   font-size: 18px;
   color: #fff;
-  font-family: 'Lora_400Regular';
   margin: 5px 0;
+  font-family: 'Lora_400Regular';
 `;
 
 export const ReturnText = styled.Text`
   font-weight: bold;
   color: #fff;
-  font-size: 18px;
-  padding: 10px;
+  font-size: 48px;
 `;

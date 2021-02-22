@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { View, Text, Button, SafeAreaView } from 'react-native';
-import { TriviaContext } from '../contexts/TriviaContext.jsx';
+import { SafeAreaView } from 'react-native';
+import { TriviaContext } from '../../contexts/TriviaContext.jsx';
 import {
   Container,
   Greeting,
@@ -11,7 +11,7 @@ import {
 } from './Results.styles.js';
 
 const Results = ({ navigation }) => {
-  const { score, setScore, setQuestions, setQuestionIndex } = useContext(
+  const { score, setScore, setQuestion, setQuestionIndex } = useContext(
     TriviaContext
   );
 
@@ -21,7 +21,7 @@ const Results = ({ navigation }) => {
       correctAnwers: [],
       wrongAnswers: [],
     });
-    // setQuestions([]);
+    setQuestion([]);
     setQuestionIndex(0);
     navigation.navigate('Home');
   };
@@ -32,7 +32,6 @@ const Results = ({ navigation }) => {
         <Greeting>Thanks for playing</Greeting>
         <ScoreText>{"That's your score"}</ScoreText>
         <Score>{score.points}/10</Score>
-
         <ResultsButton onPress={() => navigation.navigate('Answers')}>
           <ResultsText>Check Answers</ResultsText>
         </ResultsButton>

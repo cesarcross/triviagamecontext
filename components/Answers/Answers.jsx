@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, Button, FlatList, SafeAreaView } from 'react-native';
+import React, { useContext } from 'react';
+import { FlatList, SafeAreaView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TriviaContext } from '../contexts/TriviaContext.jsx';
+import { TriviaContext } from '../../contexts/TriviaContext.jsx';
 import {
-  AnswersList,
   Container,
   ReturnText,
   Score,
@@ -22,10 +21,6 @@ const Answers = ({ navigation }) => {
         return question;
       })
   );
-  console.log(
-    '--------------------------------------------------------CORRECT',
-    totalCorrectAnswers
-  );
 
   const totalWrongAnswers = score.wrongAnswers.flatMap((wrongAnswerId) =>
     questions
@@ -35,10 +30,6 @@ const Answers = ({ navigation }) => {
         return question;
       })
   );
-  console.log(
-    '--------------------------------------------------------WRONG',
-    totalWrongAnswers
-  );
 
   const checkAnswers = totalCorrectAnswers.concat(totalWrongAnswers);
 
@@ -46,7 +37,7 @@ const Answers = ({ navigation }) => {
     <SafeAreaView>
       <Container>
         <TouchableOpacity onPress={() => navigation.navigate('Results')}>
-          <ReturnText>Return</ReturnText>
+          <ReturnText>⇐</ReturnText>
         </TouchableOpacity>
         <Title>Answers</Title>
         <Score>
@@ -59,17 +50,6 @@ const Answers = ({ navigation }) => {
             <AnswersItem>{`${item.icon} ${item.question}`}</AnswersItem>
           )}
         />
-
-        {/* <FlatList
-          data={totalCorrectAnswers}
-          keyExtractor={(item) => item.key}
-          renderItem={({ item }) => <AnswersItem>{item.question}</AnswersItem>}
-        />
-        <FlatList
-          data={totalWrongAnswers}
-          keyExtractor={(item) => item.key}
-          renderItem={({ item }) => <AnswersItem>{item.question}</AnswersItem>}
-        /> */}
       </Container>
     </SafeAreaView>
   );
