@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.View`
-  background-color: #a1cae2;
+  background-color: #4a47a3;
 
   /* font-size: 2; */
 `;
