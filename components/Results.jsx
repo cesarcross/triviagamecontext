@@ -1,7 +1,14 @@
 import React, { useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, SafeAreaView } from 'react-native';
 import { TriviaContext } from '../contexts/TriviaContext.jsx';
-import { Container, Greeting, Score, ScoreText } from './Results.styles.js';
+import {
+  Container,
+  Greeting,
+  Score,
+  ScoreText,
+  ResultsButton,
+  ResultsText,
+} from './Results.styles.js';
 
 const Results = ({ navigation }) => {
   const { score, setScore, setQuestions, setQuestionIndex } = useContext(
@@ -16,17 +23,20 @@ const Results = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <Greeting>Thanks for playing</Greeting>
-      <ScoreText>{`That's your score`}</ScoreText>
-      <Score>{score}/10</Score>
-      <Button
-        title='Check Answers'
-        onPress={() => navigation.navigate('Answers')}
-        color='#b68973'
-      />
-      <Button title='Play Again' onPress={handlePlayAgain} color='#b68973' />
-    </Container>
+    <SafeAreaView>
+      <Container>
+        <Greeting>Thanks for playing</Greeting>
+        <ScoreText>{`That's your score`}</ScoreText>
+        <Score>{score}/10</Score>
+
+        <ResultsButton onPress={() => navigation.navigate('Answers')}>
+          <ResultsText>Check Answers</ResultsText>
+        </ResultsButton>
+        <ResultsButton onPress={handlePlayAgain}>
+          <ResultsText>Play Again</ResultsText>
+        </ResultsButton>
+      </Container>
+    </SafeAreaView>
   );
 };
 

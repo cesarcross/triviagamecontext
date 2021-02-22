@@ -1,6 +1,12 @@
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import { TriviaContext } from '../contexts/TriviaContext';
 import {
   Container,
@@ -8,6 +14,7 @@ import {
   QuestionNumber,
   QuestionText,
   ChoiceButton,
+  ChoiceText,
 } from './Questions.styles';
 
 const Questions = ({ navigation }) => {
@@ -34,7 +41,7 @@ const Questions = ({ navigation }) => {
       // data ? setLoading(false) : setLoading(true);
 
       const newData = data.map(function (item) {
-        item.key = String(Math.floor(Math.random() * 100));
+        item.key = String(Math.floor(Math.random() * 300));
         return item;
       });
 
@@ -67,25 +74,23 @@ const Questions = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <QuestionCategory>
-        {questions.length > 0 ? questions[questionIndex].category : ''}
-      </QuestionCategory>
-      <QuestionNumber>Question {questionIndex + 1}:</QuestionNumber>
-
-      <QuestionText>
-        {questions.length > 0 ? questions[questionIndex].question : ''}
-      </QuestionText>
-      <ChoiceButton title='True' onPress={() => playerChoice('True')} />
-      <Button
-        title='False'
-        onPress={() => playerChoice('False')}
-        color='#f194ff'
-      />
-      {/* <Text>
-        {score} / {questions.length}
-      </Text> */}
-    </Container>
+    <SafeAreaView>
+      <Container>
+        <QuestionCategory>
+          {questions.length > 0 ? questions[questionIndex].category : ''}
+        </QuestionCategory>
+        <QuestionNumber>Question {questionIndex + 1}:</QuestionNumber>
+        <QuestionText>
+          {questions.length > 0 ? questions[questionIndex].question : ''}
+        </QuestionText>
+        <ChoiceButton title='True' onPress={() => playerChoice('True')}>
+          <ChoiceText>True</ChoiceText>
+        </ChoiceButton>
+        <ChoiceButton onPress={() => playerChoice('False')}>
+          <ChoiceText>False</ChoiceText>
+        </ChoiceButton>
+      </Container>
+    </SafeAreaView>
   );
 };
 
