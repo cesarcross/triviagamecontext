@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
-import { Text, SafeAreaView } from 'react-native';
-import { TriviaContext } from '../contexts/TriviaContext';
+import React, { useEffect, useContext } from 'react';
+import { SafeAreaView } from 'react-native';
+import { TriviaContext } from '../../contexts/TriviaContext';
 import {
   Container,
   QuestionCategory,
@@ -12,8 +12,6 @@ import {
 } from './Questions.styles';
 
 const Questions = ({ navigation }) => {
-  const [loading, setLoading] = useState(true);
-
   const {
     score,
     setScore,
@@ -24,7 +22,6 @@ const Questions = ({ navigation }) => {
   } = useContext(TriviaContext);
 
   const fetchQuestions = async () => {
-    // setLoading(true);
     try {
       const response = await axios(
         `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`
@@ -33,7 +30,7 @@ const Questions = ({ navigation }) => {
       const data = response.data.results;
 
       const newData = data.map((item) => {
-        item.key = Math.random().toString(36).substr(2, 9);
+        item.key = String(Math.floor(Math.random() * 300));
         return item;
       });
 
@@ -45,7 +42,6 @@ const Questions = ({ navigation }) => {
 
   useEffect(() => {
     fetchQuestions();
-    setLoading(false);
   }, []);
 
   const handleNextQuestion = () => {
@@ -72,9 +68,7 @@ const Questions = ({ navigation }) => {
     handleNextQuestion();
   };
 
-  return loading ? (
-    <Text>Loading...</Text>
-  ) : (
+  return (
     <SafeAreaView>
       <Container>
         <QuestionCategory>

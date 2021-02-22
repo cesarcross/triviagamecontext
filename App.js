@@ -1,15 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './components/Home';
-import Questions from './components/Questions';
-import Results from './components/Results';
-import Answers from './components/Answers';
-import { TriviaContext, TriviaProvider } from './contexts/TriviaContext';
-import AppLoading from 'expo-app-loading';
 import { useFonts, Lora_400Regular } from '@expo-google-fonts/lora';
+import AppLoading from 'expo-app-loading';
+import { TriviaProvider } from './contexts/TriviaContext';
+import Home from './components/Home/Home';
+import Questions from './components/Questions/Questions';
+import Results from './components/Results/Results';
+import Answers from './components/Answers/Answers';
 
 const Stack = createStackNavigator();
 
@@ -37,18 +35,7 @@ function App() {
 export default () => {
   return (
     <TriviaProvider>
-      <App styles={styles.container} />
+      <App />
     </TriviaProvider>
   );
 };
-
-export const styles = StyleSheet.create({
-  container: {
-    padding: 40,
-    backgroundColor: '#4a47a3',
-  },
-  text: {
-    fontFamily: 'Lora_400Regular',
-    color: '#fff',
-  },
-});
