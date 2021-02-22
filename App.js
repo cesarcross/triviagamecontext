@@ -7,57 +7,32 @@ import Home from './components/Home';
 import Questions from './components/Questions';
 import Results from './components/Results';
 import Answers from './components/Answers';
-import { TriviaContext } from './contexts/TriviaContext.jsx';
+import { TriviaContext, TriviaProvider } from './contexts/TriviaContext';
+// import GlobalStyle from './globalStyles';
 
 const Stack = createStackNavigator();
 
-export default function App() {
-  const [score, setScore] = useState(0);
-  const [questions, setQuestions] = useState([]);
-  const [questionIndex, setQuestionIndex] = useState(0);
+function App() {
+  // const [score, setScore] = useState(0);
+  // const [questions, setQuestions] = useState([]);
+  // const [questionIndex, setQuestionIndex] = useState(0);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} />
-
-        <Stack.Screen name='Questions'>
-          {(props) => (
-            <Questions
-              {...props}
-              score={score}
-              setScore={setScore}
-              questions={questions}
-              setQuestions={setQuestions}
-              questionIndex={questionIndex}
-              setQuestionIndex={setQuestionIndex}
-            />
-          )}
-        </Stack.Screen>
-
-        <Stack.Screen name='Results'>
-          {(props) => (
-            <Results
-              {...props}
-              score={score}
-              setScore={setScore}
-              setQuestions={setQuestions}
-              setQuestionIndex={setQuestionIndex}
-            />
-          )}
-        </Stack.Screen>
-
-        <Stack.Screen name='Answers'>
-          {(props) => (
-            <Answers
-              {...props}
-              score={score}
-              questions={questions}
-              questionIndex={questionIndex}
-            />
-          )}
-        </Stack.Screen>
+        <Stack.Screen name='Questions' component={Questions} />
+        <Stack.Screen name='Results' component={Results} />
+        <Stack.Screen name='Answers' component={Answers} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+export default () => {
+  return (
+    <TriviaProvider>
+      <App />
+    </TriviaProvider>
+  );
+};

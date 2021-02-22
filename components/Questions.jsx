@@ -1,16 +1,18 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Button } from 'react-native';
+import { TriviaContext } from '../contexts/TriviaContext';
 
-const Questions = ({
-  score,
-  setScore,
-  questions,
-  setQuestions,
-  navigation,
-  questionIndex,
-  setQuestionIndex,
-}) => {
+const Questions = ({ navigation }) => {
+  const {
+    score,
+    setScore,
+    questions,
+    setQuestions,
+    questionIndex,
+    setQuestionIndex,
+  } = useContext(TriviaContext);
+
   const fetchQuestions = async () => {
     try {
       const response = await axios(
@@ -19,24 +21,24 @@ const Questions = ({
 
       const data = response.data.results;
 
-      // key property to be extracted from Flatlist
-      // data.forEach((item) => (item.key = String(Math.random() * 50)));
+      const newData = data.map(function (item) {
+        item.key = String(Math.floor(Math.random() * 100));
+        return item;
+      });
 
-      setQuestions(data);
+      setQuestions(newData);
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  console.log(questions);
+
   useEffect(() => {
     fetchQuestions();
   }, []);
 
-  // console.log(questions);
-
   const handleNextQuestion = () => {
-    // console.log(questionIndex, 9);
-
     if (questionIndex === 9) {
       navigation.navigate('Results');
     } else setQuestionIndex(questionIndex + 1);
@@ -49,14 +51,16 @@ const Questions = ({
       setScore(score + 1);
     }
 
-    // setQuestionIndex(questionIndex + 1);
-
     handleNextQuestion();
   };
 
   return (
     <View>
+      <Text>
+        {questions.length > 0 ? questions[questionIndex].category : ''}
+      </Text>
       <Text>Question {questionIndex + 1}</Text>
+
       <Text>
         {questions.length > 0 ? questions[questionIndex].question : ''}
       </Text>

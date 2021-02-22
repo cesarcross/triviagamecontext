@@ -2,14 +2,10 @@ import React, { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
 import { TriviaContext } from '../contexts/TriviaContext.jsx';
 
-const Results = ({
-  score,
-  setScore,
-  setQuestions,
-  setQuestionIndex,
-  navigation,
-}) => {
-  const results = useContext(TriviaContext);
+const Results = ({ navigation }) => {
+  const { score, setScore, setQuestions, setQuestionIndex } = useContext(
+    TriviaContext
+  );
 
   const handlePlayAgain = () => {
     setScore(0);

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TriviaContext } from '../contexts/TriviaContext.jsx';
 
-const Answers = ({ score, questions, questionIndex, navigation }) => {
+const Answers = ({ navigation }) => {
+  const { score, questions, questionIndex } = useContext(TriviaContext);
   const [checkAnswer, setCheckAnswer] = useState('');
 
   const checkAnswerItem = () => {
@@ -17,16 +19,14 @@ const Answers = ({ score, questions, questionIndex, navigation }) => {
     <View>
       <Text>Answers</Text>
       <Text>
-        {score} {questions.length}
+        {score}/{questions.length}
       </Text>
 
-      <Text>{questions.map((q) => q.question)}</Text>
-
-      {/* <FlatList
+      <FlatList
         data={questions}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => <Text>{item.question}</Text>}
-      /> */}
+      />
       <Button
         title='<--'
         onPress={() => navigation.navigate('Results')}
