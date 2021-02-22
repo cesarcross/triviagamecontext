@@ -6,18 +6,23 @@ export const Container = styled.View`
   height: 100%;
 `;
 
-export const Title = styled.Text`
+export const Greeting = styled.Text`
   font-size: 54px;
   color: #ffffff;
-  margin-top: 200px;
+  margin-top: 150px;
 `;
 
-export const Description = styled.Text`
+export const ScoreText = styled.Text`
   font-size: 18px;
   color: #ffffff;
-  padding-right: 50px;
 `;
 
-export const ButtonWrapper = styled.TouchableOpacity`
+export const Score = styled.Text`
+  font-size: 54px;
+  color: #ffffff;
+  margin-bottom: 30px;
+`;
+
+export const ChoiceButton = styled.Button`
   color: yellowgreen;
 `;
