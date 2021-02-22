@@ -76,11 +76,7 @@ const Questions = ({ navigation }) => {
       <QuestionText>
         {questions.length > 0 ? questions[questionIndex].question : ''}
       </QuestionText>
-      <ChoiceButton
-        title='True'
-        onPress={() => playerChoice('True')}
-        color='#f194ff'
-      />
+      <ChoiceButton title='True' onPress={() => playerChoice('True')} />
       <Button
         title='False'
         onPress={() => playerChoice('False')}

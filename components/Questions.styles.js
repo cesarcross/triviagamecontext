@@ -24,5 +24,5 @@ export const QuestionText = styled.Text`
 `;
 
 export const ChoiceButton = styled.Button`
-  color: yellowgreen;
+  color: #fff;
 `;
