@@ -1,12 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 import { TriviaContext } from '../contexts/TriviaContext';
 import {
   Container,
@@ -38,10 +32,8 @@ const Questions = ({ navigation }) => {
 
       const data = response.data.results;
 
-      // data ? setLoading(false) : setLoading(true);
-
-      const newData = data.map(function (item) {
-        item.key = String(Math.floor(Math.random() * 300));
+      const newData = data.map((item) => {
+        item.key = Math.random().toString(36).substr(2, 9);
         return item;
       });
 
@@ -51,10 +43,9 @@ const Questions = ({ navigation }) => {
     }
   };
 
-  // if (loading) return <Text>Loading...</Text>;
-
   useEffect(() => {
     fetchQuestions();
+    setLoading(false);
   }, []);
 
   const handleNextQuestion = () => {
@@ -65,15 +56,25 @@ const Questions = ({ navigation }) => {
 
   const playerChoice = (choice) => {
     console.log(choice, questions[questionIndex].correct_answer);
-
     if (choice === questions[questionIndex].correct_answer) {
-      setScore(score + 1);
+      setScore({
+        ...score,
+        points: score.points + 1,
+        correctAnswers: [...score.correctAnswers, questions[questionIndex].key],
+      });
+    } else {
+      setScore({
+        ...score,
+        wrongAnswers: [...score.wrongAnswers, questions[questionIndex].key],
+      });
     }
 
     handleNextQuestion();
   };
 
-  return (
+  return loading ? (
+    <Text>Loading...</Text>
+  ) : (
     <SafeAreaView>
       <Container>
         <QuestionCategory>
