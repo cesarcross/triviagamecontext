@@ -16,8 +16,12 @@ const Results = ({ navigation }) => {
   );
 
   const handlePlayAgain = () => {
-    setScore(0);
-    setQuestions([]);
+    setScore({
+      points: 0,
+      correctAnwers: [],
+      wrongAnswers: [],
+    });
+    // setQuestions([]);
     setQuestionIndex(0);
     navigation.navigate('Home');
   };
@@ -26,8 +30,8 @@ const Results = ({ navigation }) => {
     <SafeAreaView>
       <Container>
         <Greeting>Thanks for playing</Greeting>
-        <ScoreText>{`That's your score`}</ScoreText>
-        <Score>{score}/10</Score>
+        <ScoreText>{"That's your score"}</ScoreText>
+        <Score>{score.points}/10</Score>
 
         <ResultsButton onPress={() => navigation.navigate('Answers')}>
           <ResultsText>Check Answers</ResultsText>

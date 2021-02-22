@@ -12,16 +12,35 @@ import {
 } from './Answers.styles.js';
 
 const Answers = ({ navigation }) => {
-  const { score, questions, questionIndex } = useContext(TriviaContext);
-  const [checkAnswer, setCheckAnswer] = useState('');
+  const { score, questions } = useContext(TriviaContext);
 
-  const checkAnswerItem = () => {
-    questions.forEach((q) => {
-      if (score > 0) {
-        return 'V';
-      } else return 'X';
-    });
-  };
+  const totalCorrectAnswers = score.correctAnswers.flatMap((correctAnswerId) =>
+    questions
+      .filter((question) => question.key === correctAnswerId)
+      .map((question) => {
+        question.icon = '✓';
+        return question;
+      })
+  );
+  console.log(
+    '--------------------------------------------------------CORRECT',
+    totalCorrectAnswers
+  );
+
+  const totalWrongAnswers = score.wrongAnswers.flatMap((wrongAnswerId) =>
+    questions
+      .filter((question) => question.key === wrongAnswerId)
+      .map((question) => {
+        question.icon = '✗';
+        return question;
+      })
+  );
+  console.log(
+    '--------------------------------------------------------WRONG',
+    totalWrongAnswers
+  );
+
+  const checkAnswers = totalCorrectAnswers.concat(totalWrongAnswers);
 
   return (
     <SafeAreaView>
@@ -29,17 +48,28 @@ const Answers = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Results')}>
           <ReturnText>Return</ReturnText>
         </TouchableOpacity>
-        {/* <Button title='<--' color='#b68973' /> */}
         <Title>Answers</Title>
         <Score>
-          {score}/{questions.length}
+          {score.points}/{questions.length}
         </Score>
-
         <FlatList
-          data={questions}
+          data={checkAnswers}
+          keyExtractor={(item) => item.key}
+          renderItem={({ item }) => (
+            <AnswersItem>{`${item.icon} ${item.question}`}</AnswersItem>
+          )}
+        />
+
+        {/* <FlatList
+          data={totalCorrectAnswers}
           keyExtractor={(item) => item.key}
           renderItem={({ item }) => <AnswersItem>{item.question}</AnswersItem>}
         />
+        <FlatList
+          data={totalWrongAnswers}
+          keyExtractor={(item) => item.key}
+          renderItem={({ item }) => <AnswersItem>{item.question}</AnswersItem>}
+        /> */}
       </Container>
     </SafeAreaView>
   );
