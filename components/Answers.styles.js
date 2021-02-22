@@ -8,21 +8,26 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 54px;
-  color: #ffffff;
+  color: #fff;
   /* margin-top: 150px; */
 `;
 
 export const Score = styled.Text`
   font-size: 54px;
-  color: #ffffff;
+  color: #fff;
   /* margin-top: 150px; */
 `;
 
-export const AnswersList = styled.FlatList`
+export const AnswersItem = styled.Text`
   font-size: 18px;
-  color: #ffffff;
+  color: #fff;
+  font-family: 'Lora_400Regular';
+  margin: 5px 0;
 `;
 
-export const ChoiceButton = styled.Button`
-  color: yellowgreen;
+export const ReturnText = styled.Text`
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
 `;

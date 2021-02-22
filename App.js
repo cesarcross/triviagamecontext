@@ -8,14 +8,19 @@ import Questions from './components/Questions';
 import Results from './components/Results';
 import Answers from './components/Answers';
 import { TriviaContext, TriviaProvider } from './contexts/TriviaContext';
-// import GlobalStyle from './globalStyles';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Lora_400Regular } from '@expo-google-fonts/lora';
 
 const Stack = createStackNavigator();
 
 function App() {
-  // const [score, setScore] = useState(0);
-  // const [questions, setQuestions] = useState([]);
-  // const [questionIndex, setQuestionIndex] = useState(0);
+  let [fontsLoaded] = useFonts({
+    Lora_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <NavigationContainer>
@@ -32,17 +37,18 @@ function App() {
 export default () => {
   return (
     <TriviaProvider>
-      <App />
+      <App styles={styles.container} />
     </TriviaProvider>
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
-    margin: 0,
-    padding: 20,
-    backgroundColor: `#4a47a3`,
-    color: `#fff`,
-    fontSize: 24,
+    padding: 40,
+    backgroundColor: '#4a47a3',
+  },
+  text: {
+    fontFamily: 'Lora_400Regular',
+    color: '#fff',
   },
 });
