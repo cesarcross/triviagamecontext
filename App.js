@@ -36,3 +36,13 @@ export default () => {
     </TriviaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 0,
+    padding: 20,
+    backgroundColor: `#4a47a3`,
+    color: `#fff`,
+    fontSize: 24,
+  },
+});

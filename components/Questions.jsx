@@ -2,8 +2,17 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Button } from 'react-native';
 import { TriviaContext } from '../contexts/TriviaContext';
+import {
+  Container,
+  QuestionCategory,
+  QuestionNumber,
+  QuestionText,
+  ChoiceButton,
+} from './Questions.styles';
 
 const Questions = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
+
   const {
     score,
     setScore,
@@ -14,12 +23,15 @@ const Questions = ({ navigation }) => {
   } = useContext(TriviaContext);
 
   const fetchQuestions = async () => {
+    // setLoading(true);
     try {
       const response = await axios(
         `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`
       );
 
       const data = response.data.results;
+
+      // data ? setLoading(false) : setLoading(true);
 
       const newData = data.map(function (item) {
         item.key = String(Math.floor(Math.random() * 100));
@@ -32,7 +44,7 @@ const Questions = ({ navigation }) => {
     }
   };
 
-  console.log(questions);
+  // if (loading) return <Text>Loading...</Text>;
 
   useEffect(() => {
     fetchQuestions();
@@ -55,16 +67,16 @@ const Questions = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Text>
+    <Container>
+      <QuestionCategory>
         {questions.length > 0 ? questions[questionIndex].category : ''}
-      </Text>
-      <Text>Question {questionIndex + 1}</Text>
+      </QuestionCategory>
+      <QuestionNumber>Question {questionIndex + 1}:</QuestionNumber>
 
-      <Text>
+      <QuestionText>
         {questions.length > 0 ? questions[questionIndex].question : ''}
-      </Text>
-      <Button
+      </QuestionText>
+      <ChoiceButton
         title='True'
         onPress={() => playerChoice('True')}
         color='#f194ff'
@@ -74,10 +86,10 @@ const Questions = ({ navigation }) => {
         onPress={() => playerChoice('False')}
         color='#f194ff'
       />
-      <Text>
+      {/* <Text>
         {score} / {questions.length}
-      </Text>
-    </View>
+      </Text> */}
+    </Container>
   );
 };
 
