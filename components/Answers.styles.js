@@ -25,15 +25,6 @@ export const AnswersItem = styled.Text`
   margin: 5px 0;
 `;
 
-// export const ReturnText = styled.TouchableOpacity`
-//   align-items: center;
-//   background-color: #fff;
-//   border-radius: 50px;
-//   padding: 10px;
-//   width: 80%;
-//   align-self: center;
-// `;
-
 export const ReturnText = styled.Text`
   font-weight: bold;
   color: #fff;
