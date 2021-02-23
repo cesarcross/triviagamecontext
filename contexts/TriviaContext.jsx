@@ -3,6 +3,7 @@ import React, { useState, createContext } from 'react';
 export const TriviaContext = createContext();
 
 export const TriviaProvider = ({ children }) => {
+  const [loading, setLoading] = useState(true);
   const [score, setScore] = useState({
     points: 0,
     correctAnswers: [],
@@ -12,6 +13,8 @@ export const TriviaProvider = ({ children }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const values = {
+    loading,
+    setLoading,
     score,
     setScore,
     questions,
