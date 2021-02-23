@@ -11,7 +11,7 @@ import {
 } from './Results.styles.js';
 
 const Results = ({ navigation }) => {
-  const { score, setScore, setQuestion, setQuestionIndex } = useContext(
+  const { score, setScore, setQuestions, setQuestionIndex } = useContext(
     TriviaContext
   );
 
@@ -21,7 +21,7 @@ const Results = ({ navigation }) => {
       correctAnwers: [],
       wrongAnswers: [],
     });
-    setQuestion([]);
+    setQuestions([]);
     setQuestionIndex(0);
     navigation.navigate('Home');
   };
