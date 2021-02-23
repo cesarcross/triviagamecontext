@@ -31,7 +31,7 @@ const Answers = ({ navigation }) => {
       })
   );
 
-  const checkAnswers = totalCorrectAnswers.concat(totalWrongAnswers);
+  const answers = [...totalCorrectAnswers, ...totalWrongAnswers];
 
   return (
     <SafeAreaView>
@@ -44,7 +44,7 @@ const Answers = ({ navigation }) => {
           {score.points}/{questions.length}
         </Score>
         <FlatList
-          data={checkAnswers}
+          data={answers}
           keyExtractor={(item) => item.key}
           renderItem={({ item }) => (
             <AnswersItem>{`${item.icon} ${item.question}`}</AnswersItem>
