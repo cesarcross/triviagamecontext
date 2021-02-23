@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useContext } from 'react';
-import { SafeAreaView } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 import { TriviaContext } from '../../contexts/TriviaContext';
-import { fallbackData } from '../utils/fallbackData';
+import { fallbackData } from '../../utils/fallbackData';
 import {
   Container,
   QuestionCategory,
@@ -25,12 +25,11 @@ const Questions = ({ navigation }) => {
   } = useContext(TriviaContext);
 
   const fetchQuestions = async () => {
-    const setData = (data) => {
+    const setData = (data) =>
       data.map((item) => {
         item.key = String(Math.random() * 50);
         return item;
       });
-    };
 
     try {
       const response = await axios(
@@ -62,6 +61,7 @@ const Questions = ({ navigation }) => {
 
   const playerChoice = (choice) => {
     console.log(choice, questions[questionIndex].correct_answer);
+
     if (choice === questions[questionIndex].correct_answer) {
       setScore({
         ...score,
