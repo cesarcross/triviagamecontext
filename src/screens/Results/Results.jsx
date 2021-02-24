@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
-import { TriviaContext } from '../../contexts/TriviaContext.jsx';
+import { TriviaContext } from '../../stores/TriviaContext.jsx';
 import {
   Container,
   Greeting,

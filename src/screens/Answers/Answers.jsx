@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TriviaContext } from '../../contexts/TriviaContext.jsx';
+import { TriviaContext } from '../../stores/TriviaContext.jsx';
 import {
   Container,
   ReturnText,
