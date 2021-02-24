@@ -97,11 +97,13 @@ const Questions = ({ navigation }) => {
             </ChoiceButton>
           </View>
         ) : (
-          <ActivityIndicator
-            animating={true}
-            color={Colors.white}
-            size='large'
-          />
+          <Container>
+            <ActivityIndicator
+              animating={true}
+              color={Colors.white}
+              size='large'
+            />
+          </Container>
         )}
       </Container>
     </SafeAreaView>
