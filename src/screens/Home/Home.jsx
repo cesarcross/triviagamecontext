@@ -1,12 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import {
-  Container,
-  Title,
-  Description,
-  StartButton,
-  StartText,
-} from './Home.styles';
+import { Button as StartButton } from '../../components/Button/Button';
+import { Container, Title, Description, StartText } from './Home.styles';
 
 const Home = ({ navigation }) => {
   return (

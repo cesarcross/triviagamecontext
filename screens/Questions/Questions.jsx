@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useContext } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
-import { TriviaContext } from '../../stores/TriviaContext';
-import { fallbackData } from '../../utils/fallbackData';
-import { Button as ChoiceButton } from '../../components/Button/Button';
+import { TriviaContext } from '../../../stores/TriviaContext';
+import { fallbackData } from '../../../utils/fallbackData';
+import { Button as ChoiceButton } from '../../src/components/Button/Button';
 import {
   Container,
   QuestionCategory,
