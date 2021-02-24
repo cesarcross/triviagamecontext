@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useContext } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
+import { ActivityIndicator, Colors } from 'react-native-paper';
 import { TriviaContext } from '../../contexts/TriviaContext';
 import { fallbackData } from '../../utils/fallbackData';
 import {
@@ -78,24 +79,30 @@ const Questions = ({ navigation }) => {
     handleNextQuestion();
   };
 
-  return loading ? (
-    <Text>Loading...</Text>
-  ) : (
+  return (
     <SafeAreaView>
       <Container>
-        <QuestionCategory>
-          {questions.length > 0 ? questions[questionIndex].category : ''}
-        </QuestionCategory>
-        <QuestionNumber>Question {questionIndex + 1}:</QuestionNumber>
-        <QuestionText>
-          {questions.length > 0 ? questions[questionIndex].question : ''}
-        </QuestionText>
-        <ChoiceButton title='True' onPress={() => playerChoice('True')}>
-          <ChoiceText>True</ChoiceText>
-        </ChoiceButton>
-        <ChoiceButton onPress={() => playerChoice('False')}>
-          <ChoiceText>False</ChoiceText>
-        </ChoiceButton>
+        {!loading && questions.length > 0 ? (
+          <View>
+            <QuestionCategory>
+              {questions[questionIndex].category}
+            </QuestionCategory>
+            <QuestionNumber>Question {questionIndex + 1}:</QuestionNumber>
+            <QuestionText>{questions[questionIndex].question}</QuestionText>
+            <ChoiceButton title='True' onPress={() => playerChoice('True')}>
+              <ChoiceText>True</ChoiceText>
+            </ChoiceButton>
+            <ChoiceButton onPress={() => playerChoice('False')}>
+              <ChoiceText>False</ChoiceText>
+            </ChoiceButton>
+          </View>
+        ) : (
+          <ActivityIndicator
+            animating={true}
+            color={Colors.white}
+            size='large'
+          />
+        )}
       </Container>
     </SafeAreaView>
   );
