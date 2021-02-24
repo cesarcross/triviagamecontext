@@ -27,16 +27,6 @@ export const QuestionText = styled.Text`
   font-family: 'Lora_400Regular';
 `;
 
-export const ChoiceButton = styled.TouchableOpacity`
-  align-items: center;
-  background-color: #fff;
-  border-radius: 50px;
-  padding: 10px;
-  width: 80%;
-  align-self: center;
-  margin: 8px 0;
-`;
-
 export const ChoiceText = styled.Text`
   font-weight: bold;
   color: #4a47a3;

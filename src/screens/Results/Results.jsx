@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
-import { TriviaContext } from '../../contexts/TriviaContext.jsx';
+import { TriviaContext } from '../../stores/TriviaContext.jsx';
+import { Button as ResultsButton } from '../../components/Button/Button';
 import {
   Container,
   Greeting,
   Score,
   ScoreText,
-  ResultsButton,
   ResultsText,
 } from './Results.styles.js';
 
