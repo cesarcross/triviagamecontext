@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
-import { ActivityIndicator, Colors } from 'react-native-paper';
+import { ActivityIndicator, Colors, ProgressBar } from 'react-native-paper';
 import { TriviaContext } from '../../stores/TriviaContext';
 import { fallbackData } from '../../utils/fallbackData';
 import { Button as ChoiceButton } from '../../components/Button/Button';
@@ -24,6 +24,8 @@ const Questions = ({ navigation }) => {
     questionIndex,
     setQuestionIndex,
   } = useContext(TriviaContext);
+
+  const [progressBar, setProgressBar] = useState(questionIndex);
 
   const fetchQuestions = async () => {
     const setData = (data) =>
@@ -57,7 +59,10 @@ const Questions = ({ navigation }) => {
   const handleNextQuestion = () => {
     if (questionIndex === 9) {
       navigation.navigate('Results');
-    } else setQuestionIndex(questionIndex + 1);
+    } else {
+      setQuestionIndex(questionIndex + 1);
+      setProgressBar(progressBar + 0.1);
+    }
   };
 
   const playerChoice = (choice) => {
@@ -84,6 +89,7 @@ const Questions = ({ navigation }) => {
       <Container>
         {!loading && questions.length > 0 ? (
           <View>
+            <ProgressBar progress={progressBar} color={Colors.white} />
             <QuestionCategory>
               {questions[questionIndex].category}
             </QuestionCategory>
