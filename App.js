@@ -3,11 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts, Lora_400Regular } from '@expo-google-fonts/lora';
 import AppLoading from 'expo-app-loading';
-import { TriviaProvider } from './stores/TriviaContext';
-import Home from './screens/Home/Home';
-import Questions from './screens/Questions/Questions';
-import Results from './screens/Results/Results';
-import Answers from './screens/Answers/Answers';
+import { TriviaProvider } from './src/stores/TriviaContext';
+import Home from './src/screens/Home/Home';
+import Questions from './src/screens/Questions/Questions';
+import Results from './src/screens/Results/Results';
+import Answers from './src/screens/Answers/Answers';
 
 const Stack = createStackNavigator();
 
